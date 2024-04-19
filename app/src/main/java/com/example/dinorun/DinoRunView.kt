@@ -7,6 +7,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Typeface
+import android.media.MediaPlayer
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
@@ -54,6 +55,9 @@ class DinoRunView(context: Context, private val resources: Resources) : View(con
     private val bombWidth = 150
     private val bombHeight = 150
 
+    private lateinit var mediaPlayer: MediaPlayer
+    private lateinit var coinSoundPlayer: MediaPlayer
+
     init {
         // Load dinosaur frames from resources
         dino[0] = BitmapFactory.decodeResource(resources, R.drawable.run1)
@@ -91,6 +95,13 @@ class DinoRunView(context: Context, private val resources: Resources) : View(con
 
         life[0] = BitmapFactory.decodeResource(resources, R.drawable.life1)
         life[1] = BitmapFactory.decodeResource(resources, R.drawable.life2)
+
+        // Initialize the MediaPlayer and load the sound file
+        mediaPlayer = MediaPlayer.create(context, R.raw.soundtrack)
+        mediaPlayer.isLooping = true // Loop the soundtrack
+        mediaPlayer.start() // Start playing the soundtrack
+
+        coinSoundPlayer = MediaPlayer.create(context, R.raw.coinsound)
 
         // Set initial position and score
         dinoY = 700
@@ -135,6 +146,8 @@ class DinoRunView(context: Context, private val resources: Resources) : View(con
             score += 10
             yellowX = canvasWidth + 21 // Move the ball out of the screen
             yellowY = generateRandomY(minDinoY, maxDinoY)
+
+            coinSoundPlayer.start()
         }
         if (yellowX < 0) {
             yellowX = canvasWidth + 21 // Move the ball out of the screen
@@ -206,6 +219,12 @@ class DinoRunView(context: Context, private val resources: Resources) : View(con
     // Method to check if ball hits dinosaur
     private fun hitBallChecker(x: Int, y: Int): Boolean {
         return dinoX < x && x < dinoX + dino[0]!!.width && dinoY < y && y < dinoY + dino[0]!!.height
+    }
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        // Release the MediaPlayer resources when the view is destroyed
+        mediaPlayer.release()
+        coinSoundPlayer.release()
     }
 
     // Touch event handler

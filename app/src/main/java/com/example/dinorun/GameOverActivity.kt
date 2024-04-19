@@ -33,6 +33,6 @@ class GameOverActivity : AppCompatActivity() {
         }
 
         // Set the score text
-        displayScore.text = "Score = $score"
+        displayScore.text = "$score"
     }
 }
