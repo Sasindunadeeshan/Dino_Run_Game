@@ -5,5 +5,27 @@
     android:id="@+id/displayScore"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
     android:background="@drawable/loading_bg"
-    tools:context=".SplashActivity" />
+    tools:context=".SplashActivity">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="339dp"
+        android:layout_height="17dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="626dp"
+        android:layout_marginBottom="74dp"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="0"
+        android:progressDrawable="@drawable/custom_loading"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.63" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
