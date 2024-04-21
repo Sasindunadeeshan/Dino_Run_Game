@@ -93,13 +93,11 @@ class DinoRunView(context: Context, private val resources: Resources) : View(con
         }
 
         // Load other bitmaps from resources
-        backgroundImage = BitmapFactory.decodeResource(resources, R.drawable.night_bg)
+        backgroundImage = BitmapFactory.decodeResource(resources, R.drawable.bg3)
         coinBitmap = BitmapFactory.decodeResource(resources, R.drawable.coin)
         gemBitmap = BitmapFactory.decodeResource(resources, R.drawable.gem)
         bombBitmap = BitmapFactory.decodeResource(resources, R.drawable.bomb)
         settingIc = BitmapFactory.decodeResource(resources,R.drawable.settingic)
-
-
 
         scorePaint.color = Color.WHITE
         scorePaint.textSize = 100f
