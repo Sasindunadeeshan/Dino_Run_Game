@@ -21,7 +21,7 @@ class SplashActivity : AppCompatActivity() {
 
         progressBar = findViewById(R.id.progressBar)
 
-            val mainIntent = Intent(this@SplashActivity, MainActivity::class.java)
+            val mainIntent = Intent(this@SplashActivity, startGameActivity::class.java)
 
             // Start a new thread to update the progress bar
             Thread {

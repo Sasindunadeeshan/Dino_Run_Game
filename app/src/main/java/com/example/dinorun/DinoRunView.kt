@@ -51,6 +51,8 @@ class DinoRunView(context: Context, private val resources: Resources) : View(con
     private lateinit var backgroundImage: Bitmap
     private val scorePaint = Paint()
     private val life = arrayOfNulls<Bitmap>(2)
+    private lateinit var scoreIc : Bitmap
+    private lateinit var lifeIc : Bitmap
     private lateinit var settingIc : Bitmap
     private lateinit var coinBitmap: Bitmap
     private val coinWidth = 100
@@ -93,16 +95,18 @@ class DinoRunView(context: Context, private val resources: Resources) : View(con
         }
 
         // Load other bitmaps from resources
-        backgroundImage = BitmapFactory.decodeResource(resources, R.drawable.bg3)
+        backgroundImage = BitmapFactory.decodeResource(resources, R.drawable.background)
         coinBitmap = BitmapFactory.decodeResource(resources, R.drawable.coin)
         gemBitmap = BitmapFactory.decodeResource(resources, R.drawable.gem)
         bombBitmap = BitmapFactory.decodeResource(resources, R.drawable.bomb)
         settingIc = BitmapFactory.decodeResource(resources,R.drawable.settingic)
+        scoreIc = BitmapFactory.decodeResource(resources,R.drawable.lifebord)
+        lifeIc = BitmapFactory.decodeResource(resources,R.drawable.lifebord)
 
         scorePaint.color = Color.WHITE
-        scorePaint.textSize = 100f
+        scorePaint.textSize = 80f
         scorePaint.isAntiAlias = true
-        val typeface = ResourcesCompat.getFont(context, R.font.nabla_regular)
+        val typeface = ResourcesCompat.getFont(context, R.font.pixel)
         scorePaint.typeface = typeface
 
         life[0] = BitmapFactory.decodeResource(resources, R.drawable.life1)
@@ -227,27 +231,32 @@ class DinoRunView(context: Context, private val resources: Resources) : View(con
         val resizedBombBitmap = Bitmap.createScaledBitmap(bombBitmap, bombWidth, bombHeight, true)
         canvas.drawBitmap(resizedBombBitmap, redX.toFloat(), redY.toFloat(), null)
 
+        val scoreBitmapWidth = 440
+        val scoreBitmapHeight = 160
+        val scoreBitmapX = 40
+        val scoreBitmapY = 100
+        val scaledScoreBitmap = Bitmap.createScaledBitmap(scoreIc, scoreBitmapWidth, scoreBitmapHeight, true)
+        canvas.drawBitmap(scaledScoreBitmap, scoreBitmapX.toFloat(), scoreBitmapY.toFloat(), null)
+
+        val lifebordBitmapWidth = 440
+        val lifebordBitmapHeight = 160
+        val lifebordBitmapX = 40
+        val lifebordBitmapY = 300
+        val scaledlifebordBitmap = Bitmap.createScaledBitmap(lifeIc, lifebordBitmapWidth, lifebordBitmapHeight, true)
+        canvas.drawBitmap(scaledlifebordBitmap, lifebordBitmapX.toFloat(), lifebordBitmapY.toFloat(), null)
+
         // Draw score text
-        val scoreTextX = 100
-        val scoreTextY = 250
+        val scoreTextX = 120
+        val scoreTextY = 200
         canvas.drawText("" + score, scoreTextX.toFloat(), scoreTextY.toFloat(), scorePaint)
 
-        //Draw setting ic
-
-        val settingBitmapWidth = 120
-        val settingBitmapHeight = 120
-        val settingBitmapX = 450
-        val settingBitmapY = 150
-        val scaledSettingBitmap = Bitmap.createScaledBitmap(settingIc, settingBitmapWidth, settingBitmapHeight, true)
-        canvas.drawBitmap(scaledSettingBitmap, settingBitmapX.toFloat(), settingBitmapY.toFloat(), null)
-
         // Draw life bitmaps
-        val lifeBitmapWidth = 120
-        val lifeBitmapHeight = 120
+        val lifeBitmapWidth = 75
+        val lifeBitmapHeight = 75
         val lifeBitmapSpacing = 10
         for (i in 0 until 3) {
-            val lifeBitmapX = 650 + (lifeBitmapWidth + lifeBitmapSpacing) * i
-            val lifeBitmapY = 150
+            val lifeBitmapX = 120 + (lifeBitmapWidth + lifeBitmapSpacing) * i
+            val lifeBitmapY = 340
             if (i < lifeOfDino) {
                 val scaledLifeBitmap = Bitmap.createScaledBitmap(life[0]!!, lifeBitmapWidth, lifeBitmapHeight, true)
                 canvas.drawBitmap(scaledLifeBitmap, lifeBitmapX.toFloat(), lifeBitmapY.toFloat(), null)
@@ -256,6 +265,15 @@ class DinoRunView(context: Context, private val resources: Resources) : View(con
                 canvas.drawBitmap(scaledLifeBitmap2, lifeBitmapX.toFloat(), lifeBitmapY.toFloat(), null)
             }
         }
+
+        //Draw setting ic
+
+        val settingBitmapWidth = 150
+        val settingBitmapHeight = 150
+        val settingBitmapX = 850
+        val settingBitmapY = 150
+        val scaledSettingBitmap = Bitmap.createScaledBitmap(settingIc, settingBitmapWidth, settingBitmapHeight, true)
+        canvas.drawBitmap(scaledSettingBitmap, settingBitmapX.toFloat(), settingBitmapY.toFloat(), null)
 
         // Increment frame index for the next frame
         currentFrameIndex = (currentFrameIndex + 1) % 10
@@ -267,7 +285,7 @@ class DinoRunView(context: Context, private val resources: Resources) : View(con
     override fun onTouchEvent(event: MotionEvent): Boolean {
         if (event.action == MotionEvent.ACTION_DOWN) {
             // Check if touch event is within setting icon bounds
-            val settingBitmapX = 450
+            val settingBitmapX = 850
             val settingBitmapY = 150
             val settingBitmapWidth = 120
             val settingBitmapHeight = 120

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center_horizontal"
-    android:background="@drawable/ld_bg"
+    android:background="@drawable/gamebg"
     tools:context=".SplashActivity">
 
     <ProgressBar
@@ -23,7 +23,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.93" />
+        app:layout_constraintVertical_bias="0.88" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
