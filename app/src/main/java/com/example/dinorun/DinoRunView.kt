@@ -86,8 +86,8 @@ class DinoRunView(context: Context, private val resources: Resources) : View(con
         dino[9] = BitmapFactory.decodeResource(resources, R.drawable.run10)
 
         // Define the desired width and height for the dinosaur image
-        val desiredWidth = 378 // Adjust this value as needed
-        val desiredHeight = 472 // Adjust this value as needed
+        val desiredWidth = 328 // Adjust this value as needed
+        val desiredHeight = 422 // Adjust this value as needed
 
         // Scale the original bitmaps to the desired size
         for (i in 0..9) {
