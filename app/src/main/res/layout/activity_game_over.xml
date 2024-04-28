@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/jacquard_regular"
         android:text="50"
-        android:textColor="@color/material_dynamic_neutral40"
+        android:textColor="@color/progress_color"
         android:textSize="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
