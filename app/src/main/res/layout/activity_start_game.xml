@@ -5,24 +5,19 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/startgame"
+    android:background="@drawable/gamest"
     tools:context=".startGameActivity">
 
-    <Button
+    <ImageView
         android:id="@+id/paly"
-        android:layout_width="157dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="628dp"
-        android:layout_marginBottom="44dp"
-        android:background="@drawable/playbtn"
-        android:fontFamily="@font/pixel"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
+        android:layout_width="364dp"
+        android:layout_height="505dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.547"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.92" />
+        app:layout_constraintVertical_bias="0.723"
+        app:srcCompat="@drawable/startbtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
