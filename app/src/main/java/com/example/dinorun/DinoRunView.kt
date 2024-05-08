@@ -34,17 +34,17 @@ class DinoRunView(context: Context, private val resources: Resources) : View(con
     private var canvasWidth: Int = 0
     private var canvasHeight: Int = 0
 
-    private var yellowX: Int = 0
-    private var yellowY: Int = 0
-    private var yellowSpeed = 16
+    private var coinX: Int = 0
+    private var coinY: Int = 0
+    private var coinSpeed = 16
 
-    private var greenX: Int = 0
-    private var greenY: Int = 0
-    private var greenSpeed = 20
+    private var gemX: Int = 0
+    private var gemY: Int = 0
+    private var gemSpeed = 20
 
-    private var redX: Int = 0
-    private var redY: Int = 0
-    private var redSpeed = 25
+    private var bombX: Int = 0
+    private var bombY: Int = 0
+    private var bombSpeed = 25
 
     private var score: Int = 0
     private var lifeOfDino: Int = 0
@@ -181,39 +181,39 @@ class DinoRunView(context: Context, private val resources: Resources) : View(con
             canvas.drawBitmap(dino[currentFrameIndex]!!, dinoX.toFloat(), dinoY.toFloat(), null)
         }
 
-        yellowX -= yellowSpeed
-        if (hitBallChecker(yellowX, yellowY)) {
+        coinX -= coinSpeed
+        if (hitBallChecker(coinX, coinY)) {
             score += 10
-            yellowX = canvasWidth + 21 // Move the ball out of the screen
-            yellowY = generateRandomY(minDinoY, maxDinoY)
+            coinX = canvasWidth + 21 // Move the ball out of the screen
+            coinY = generateRandomY(minDinoY, maxDinoY)
 
             coinSoundPlayer.start()
         }
-        if (yellowX < 0) {
-            yellowX = canvasWidth + 21 // Move the ball out of the screen
-            yellowY = generateRandomY(minDinoY, maxDinoY)
+        if (coinX < 0) {
+            coinX = canvasWidth + 21 // Move the ball out of the screen
+            coinY = generateRandomY(minDinoY, maxDinoY)
         }
         val resizedCoinBitmap = Bitmap.createScaledBitmap(coinBitmap, coinWidth, coinHeight, true)
-        canvas.drawBitmap(resizedCoinBitmap, yellowX.toFloat(), yellowY.toFloat(), null)
+        canvas.drawBitmap(resizedCoinBitmap, coinX.toFloat(), coinY.toFloat(), null)
 
-        greenX -= greenSpeed
-        if (hitBallChecker(greenX, greenY)) {
+        gemX -= gemSpeed
+        if (hitBallChecker(gemX, gemY)) {
             score += 20
-            greenX = canvasWidth + 21 // Move the ball out of the screen
-            greenY = generateRandomY(minDinoY, maxDinoY)
+            gemX = canvasWidth + 21 // Move the ball out of the screen
+            gemY = generateRandomY(minDinoY, maxDinoY)
 
             gemSoundPlayer.start()
         }
-        if (greenX < 0) {
-            greenX = canvasWidth + 21 // Move the ball out of the screen
-            greenY = generateRandomY(minDinoY, maxDinoY)
+        if (gemX < 0) {
+            gemX = canvasWidth + 21 // Move the ball out of the screen
+            gemY = generateRandomY(minDinoY, maxDinoY)
         }
         val resizedGemBitmap = Bitmap.createScaledBitmap(gemBitmap, gemWidth, gemHeight, true)
-        canvas.drawBitmap(resizedGemBitmap, greenX.toFloat(), greenY.toFloat(), null)
+        canvas.drawBitmap(resizedGemBitmap, gemX.toFloat(), gemY.toFloat(), null)
 
-        redX -= redSpeed
-        if (hitBallChecker(redX, redY)) {
-            redX = -100
+        bombX -= bombSpeed
+        if (hitBallChecker(bombX, bombY)) {
+            bombX = -100
             lifeOfDino--
             bombSoundPlayer.start()
             if (lifeOfDino == 0) {
@@ -224,12 +224,12 @@ class DinoRunView(context: Context, private val resources: Resources) : View(con
                 context.startActivity(gameOverIntent)
             }
         }
-        if (redX < 0) {
-            redX = canvasWidth + 21 // Move the ball out of the screen
-            redY = generateRandomY(minDinoY, maxDinoY)
+        if (bombX < 0) {
+            bombX = canvasWidth + 21 // Move the ball out of the screen
+            bombY = generateRandomY(minDinoY, maxDinoY)
         }
         val resizedBombBitmap = Bitmap.createScaledBitmap(bombBitmap, bombWidth, bombHeight, true)
-        canvas.drawBitmap(resizedBombBitmap, redX.toFloat(), redY.toFloat(), null)
+        canvas.drawBitmap(resizedBombBitmap, bombX.toFloat(), bombY.toFloat(), null)
 
         val scoreBitmapWidth = 440
         val scoreBitmapHeight = 160
